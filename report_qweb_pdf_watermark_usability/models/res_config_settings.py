@@ -1,9 +1,12 @@
 from odoo import Command, api, fields, models
 
+<<<<<<< HEAD
 CONFIG_PARAM_WATERMARK_REPORTS = (
     "report_qweb_pdf_watermark_usability.outgoing_report_config_ids"  # noqa
 )
 
+=======
+>>>>>>> d84f05d ([ADD] report_qweb_pdf_watermark_usability)
 
 class ResConfigSettings(models.TransientModel):
     _inherit = "res.config.settings"
@@ -14,6 +17,7 @@ class ResConfigSettings(models.TransientModel):
         domain="[('report_type', '=', 'qweb-pdf')]",
     )
 
+<<<<<<< HEAD
     @api.model_create_multi
     def create(self, vals_list):
         records = super().create(vals_list)
@@ -82,21 +86,53 @@ class ResConfigSettings(models.TransientModel):
                 CONFIG_PARAM_WATERMARK_REPORTS,
                 ",".join(str(i) for i in sorted(active_selected_reports.ids)),
             )
+=======
+    def set_values(self):
+        res = super().set_values()
+        active_reports = self.env["ir.actions.report"].search(
+            [
+                ("report_type", "=", "qweb-pdf"),
+                ("use_company_watermark", "=", True),
+                ("pdf_watermark", "=", False),
+                ("pdf_watermark_expression", "=", False),
+            ]
+        )
+        selected_reports = self.outgoing_report_config_ids.filtered(
+            lambda r: r.report_type == "qweb-pdf"
+        )
+        reports_to_disable = active_reports - selected_reports
+        if reports_to_disable:
+            reports_to_disable.write({"use_company_watermark": False})
+
+        self.add_watermark_reports(self.outgoing_report_config_ids.ids)
+        return res
+>>>>>>> d84f05d ([ADD] report_qweb_pdf_watermark_usability)
 
     @api.model
     def get_values(self):
         res = super().get_values()
+<<<<<<< HEAD
         active_reports = (
             self.env["ir.actions.report"]
             .browse(self._get_watermark_report_ids())
             .exists()
             .filtered(lambda r: r.report_type == "qweb-pdf" and r.use_company_watermark)
+=======
+        active_reports = self.env["ir.actions.report"].search(
+            [
+                ("report_type", "=", "qweb-pdf"),
+                ("use_company_watermark", "=", True),
+                ("pdf_watermark", "=", False),
+                ("pdf_watermark_expression", "=", False),
+            ]
+>>>>>>> d84f05d ([ADD] report_qweb_pdf_watermark_usability)
         )
         res["outgoing_report_config_ids"] = [Command.set(active_reports.ids)]
         return res
 
     @api.model
     def add_watermark_reports(self, report_ids):
+<<<<<<< HEAD
         """Enable company watermark on reports specified by a list of IDs."""
         if not isinstance(report_ids, list):
             raise TypeError(
@@ -111,6 +147,23 @@ class ResConfigSettings(models.TransientModel):
             .browse([rid for rid in report_ids if rid])
             .exists()
         )
+=======
+        """Enable company watermark on reports specified by IDs
+        (called during child module installation)."""
+        if not report_ids:
+            return
+        if hasattr(report_ids, "ids"):
+            report_ids = report_ids.ids
+        elif isinstance(report_ids, int):
+            report_ids = [report_ids]
+
+        reports = self.env["ir.actions.report"]
+        for report_id in report_ids:
+            if report_id:
+                record = self.env["ir.actions.report"].browse(report_id)
+                if record.exists():
+                    reports |= record
+>>>>>>> d84f05d ([ADD] report_qweb_pdf_watermark_usability)
 
         reports_to_enable = reports.filtered(
             lambda r: r.report_type == "qweb-pdf"
