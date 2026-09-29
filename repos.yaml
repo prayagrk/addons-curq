@@ -6,7 +6,6 @@
     onesteinbv: https://github.com/onesteinbv/odoo.git
   merges:
     - odoo 18.0
-    - onesteinbv 18.0-fix-web_editor
 
 # onestein
 ./addons-generic:
@@ -16,7 +15,7 @@
     onestein: https://github.com/onesteinbv/addons-generic.git
   merges:
     - remote: onestein
-      ref: 7339ce45a33044feb19de85c66e2127bda62244f
+      ref: e7a838be501cc65a048be64962b02846d9668efb
 
 # oca
 ./oca:
