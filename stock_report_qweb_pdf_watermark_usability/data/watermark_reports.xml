@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <function model="res.config.settings" name="add_watermark_reports">
+        <value
+            eval="[
+            'stock.action_report_delivery',
+            'stock.stock_reception_report_action',
+            'stock.return_label_report',
+        ]"
+        />
+    </function>
+</odoo>
