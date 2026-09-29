@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <function model="res.config.settings" name="add_watermark_reports">
+        <value eval="[
+            'repair.action_report_repair_order',
+        ]" />
+    </function>
+</odoo>
