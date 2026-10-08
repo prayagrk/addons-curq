@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo noupdate="1">
+    <function model="res.config.settings" name="add_watermark_reports">
+        <value
+            eval="[
+            ref('sale.action_report_saleorder'),
+            ref('sale.action_report_pro_forma_invoice'),
+        ]"
+        />
+    </function>
+</odoo>
