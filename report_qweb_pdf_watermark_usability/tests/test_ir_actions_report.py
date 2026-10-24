@@ -33,6 +33,7 @@ class TestReportWatermark(TransactionCase):
         self.env["res.config.settings"].add_watermark_reports([self.sample_report.id])
         self.assertTrue(self.sample_report.use_company_watermark)
 
+<<<<<<< HEAD
     def test_add_watermark_reports_with_invalid_types_raises_error(self):
         """Passing non-list types (int, recordset, False, None) raises TypeError."""
         for invalid_val in (
@@ -50,6 +51,25 @@ class TestReportWatermark(TransactionCase):
         """Pass empty list [] to add_watermark_reports without errors."""
         self.assertFalse(self.sample_report.use_company_watermark)
         self.env["res.config.settings"].add_watermark_reports([])
+=======
+    def test_add_watermark_reports_with_single_int(self):
+        """Pass a single integer report ID to add_watermark_reports."""
+        self.assertFalse(self.sample_report.use_company_watermark)
+        self.env["res.config.settings"].add_watermark_reports(self.sample_report.id)
+        self.assertTrue(self.sample_report.use_company_watermark)
+
+    def test_add_watermark_reports_with_recordset(self):
+        """Pass an ir.actions.report recordset to add_watermark_reports."""
+        self.assertFalse(self.sample_report.use_company_watermark)
+        self.env["res.config.settings"].add_watermark_reports(self.sample_report)
+        self.assertTrue(self.sample_report.use_company_watermark)
+
+    def test_add_watermark_reports_falsy_or_empty(self):
+        """Pass empty or falsy values to add_watermark_reports without errors."""
+        self.assertFalse(self.sample_report.use_company_watermark)
+        for falsy_val in ([], False, None, self.env["ir.actions.report"]):
+            self.env["res.config.settings"].add_watermark_reports(falsy_val)
+>>>>>>> d84f05d ([ADD] report_qweb_pdf_watermark_usability)
         self.assertFalse(self.sample_report.use_company_watermark)
 
     def test_add_watermark_reports_missing_ids_handled_gracefully(self):
@@ -132,6 +152,7 @@ class TestReportWatermark(TransactionCase):
             expr_watermark_report.id,
             values["outgoing_report_config_ids"][0][2],
         )
+<<<<<<< HEAD
 
     def test_set_and_get_values_with_config_param(self):
         """Test set_values and get_values flow with ir.config_parameter."""
@@ -213,3 +234,5 @@ class TestReportWatermark(TransactionCase):
         configured_ids = values["outgoing_report_config_ids"][0][2]
         self.assertIn(self.sample_report.id, configured_ids)
         self.assertIn(third_report.id, configured_ids)
+=======
+>>>>>>> d84f05d ([ADD] report_qweb_pdf_watermark_usability)
