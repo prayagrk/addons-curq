@@ -42,6 +42,7 @@ stock_install
 website_event_install
 website_helpdesk_install
 website_install
+website_usability
 website_sale_install
 website_membership_install
 membership_development_install
@@ -54,6 +55,7 @@ resource_booking_install
 spreadsheet_oca_ux
 partner_external_map_usability
 release_note
+auth_branding
 web_branding
 website_branding
 account_branding
@@ -98,7 +100,6 @@ addons-generic/sale_recurring_payment_mollie
 addons-generic/subscription_portal
 addons-generic/web_responsive_attachment_preview
 addons-generic/website_event_external_map
-addons-generic/website_event_altcha
 addons-generic/website_hide_navbar_technical
 addons-generic/website_html_sitemap
 addons-generic/website_mailing_to_blogpost
@@ -152,6 +153,7 @@ addons-generic/website_partner_privacy_nickname
 addons-generic/website_partner_privacy
 addons-generic/remove_enterprise_shipping_connector
 addons-generic/membership_activity_project_parent
+addons-generic/website_payment_altcha
 addons-third-party/mollie_account_sync
 addons-third-party/payment_mollie_official
 design-themes/theme_anelusia
@@ -317,6 +319,7 @@ oca/partner_contact_birthdate
 oca/partner_contact_personal_information_page
 oca/partner_external_map
 oca/partner_firstname
+oca/partner_store
 oca/product_analytic
 oca/product_category_product_link
 oca/product_category_tax
@@ -367,11 +370,16 @@ oca/web_widget_x2many_2d_matrix
 oca/website_analytics_matomo
 oca/website_altcha
 oca/website_breadcrumb
+oca/website_event_altcha
 oca/website_odoo_debranding
 oca/website_event_external
 oca/website_helpdesk_mgmt
+oca/website_mass_mailing_altcha
+oca/website_event_calendar
 oca/website_sale_resource_booking
 oca/website_snippet_openstreetmap
+oca/website_geoengine
+oca/website_geoengine_store_locator
 oca/operating_unit
 oca/analytic_operating_unit
 oca/account_operating_unit
