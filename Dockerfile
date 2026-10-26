@@ -52,6 +52,7 @@ COPY --parents \
 	website_event_install \
 	website_helpdesk_install \
 	website_install \
+	website_usability \
 	website_membership_install \
 	website_onboarding \
 	website_sale_install \
@@ -62,6 +63,7 @@ COPY --parents \
     spreadsheet_oca_ux \
 	partner_external_map_usability \
 	release_note \
+	auth_branding \
 	web_branding \
 	account_branding \
 	website_branding \
@@ -91,7 +93,7 @@ RUN apt-get update \
     && sed -i -E "s/(gevent==)21\.8\.0( ; sys_platform != 'win32' and python_version == '3.10')/\122.10.2\2/;s/(greenlet==)1.1.2( ; sys_platform != 'win32' and python_version == '3.10')/\12.0.2\2/" /requirements.txt \
     && pip3.12 wheel -r /requirements.txt -r /curq-requirements.txt --wheel-dir=/wheels
 
-FROM ghcr.io/onesteinbv/odoo-docker:18.0-slim-467dda4aba36936beba8b94a167e9a8de20a65de AS base
+FROM ghcr.io/onesteinbv/odoo-docker:18.0-slim-d7d1ee5f73a132c6c857901f8de23a2f35687dfa AS base
 COPY --from=pack ./odoo /odoo/src/odoo
 COPY --from=pack ./package /odoo/custom
 COPY --from=wheels ./wheels /odoo/wheels
